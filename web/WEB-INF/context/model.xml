@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:map id="modelProviders" key-type="java.lang.String" value-type="by.nc.school.dev.example.spring.data.web.provider.ModelProvider">
+        <entry value-ref="homeModelProvider">
+            <key><util:constant static-field="by.nc.school.dev.example.spring.data.web.Pages$VIEWS$HOME.VIEW" /></key>
+        </entry>
+        <entry value-ref="browseMarksModelProvider">
+            <key><util:constant static-field="by.nc.school.dev.example.spring.data.web.Pages$VIEWS$BROWSE_MARKS.VIEW" /></key>
+        </entry>
+        <entry value-ref="putMarksModelProvider">
+            <key><util:constant static-field="by.nc.school.dev.example.spring.data.web.Pages$VIEWS$PUT_MARKS.VIEW" /></key>
+        </entry>
+    </util:map>
+
+    <bean id="homeModelProvider" class="by.nc.school.dev.example.spring.data.web.provider.HomeModelProvider">
+        <property name="userRepository" ref="userRepository" />
+    </bean>
+
+
+    <bean id="browseMarksModelProvider" class="by.nc.school.dev.example.spring.data.web.provider.BrowseMarksModelProvider">
+        <property name="reportCardRepository" ref="reportCardRepository"/>
+    </bean>
+
+    <bean id="putMarksModelProvider" class="by.nc.school.dev.example.spring.data.web.provider.PutMarksModelProvider">
+        <property name="courseMarksRepository" ref="courseMarksRepository"/>
+        <property name="courseService" ref="courseService"/>
+    </bean>
+
+</beans>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven />
+
+    <import resource="context/model.xml" />
+    <import resource="context/controller.xml" />
+
+    <bean class="org.springframework.beans.factory.config.MethodInvokingBean">
+        <property name="staticMethod" value="by.nc.school.dev.example.spring.data.web.tag.AppStringTag.setAppStringsService" />
+        <property name="arguments" ref="appStringsService" />
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+    <mvc:resources mapping="/static/**" location="/static/" />
+
+    <mvc:interceptors>
+        <bean id="loggerInterceptor" class="by.nc.school.dev.example.spring.data.web.interceptor.AuthCheckInterceptor" />
+    </mvc:interceptors>
+
+</beans>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="appStringsService" class="by.nc.school.dev.example.spring.data.service.AppStringsServiceImpl" />
+
+    <bean id="userService" class="by.nc.school.dev.example.spring.data.service.UserServiceImpl">
+        <property name="userRepository" ref="userRepository" />
+        <property name="personService" ref="personService"/>
+        <property name="testDataGenerator" ref="testDataGenerator"/>
+    </bean>
+
+    <bean id="personService" class="by.nc.school.dev.example.spring.data.service.PersonServiceImpl">
+        <property name="appStringsService" ref="appStringsService"/>
+        <property name="personRepository" ref="personRepository"/>
+    </bean>
+
+    <bean id="courseService" class="by.nc.school.dev.example.spring.data.service.CourseServiceImpl">
+        <property name="courseRepository" ref="courseRepository"/>
+    </bean>
+
+    <bean id="marksService" class="by.nc.school.dev.example.spring.data.service.MarksServiceImpl">
+        <property name="listOfMarksRepository" ref="listOfMarksRepository"/>
+    </bean>
+
+    <bean id="testDataGenerator" class="by.nc.school.dev.example.spring.data.utils.TestDataGenerator">
+        <property name="userService" ref="userService"/>
+        <property name="personService" ref="personService"/>
+        <property name="courseService" ref="courseService"/>
+        <property name="reportCardRepository" ref="reportCardRepository"/>
+        <property name="courseMarksRepository" ref="courseMarksRepository"/>
+        <property name="marksService" ref="marksService"/>
+    </bean>
+
+
+
+</beans>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="webController" class="by.nc.school.dev.example.spring.data.web.controller.ViewController">
+        <property name="modelProviders" ref="modelProviders" />
+    </bean>
+
+    <bean id="userController" class="by.nc.school.dev.example.spring.data.web.controller.UserController">
+        <property name="userService" ref="userService" />
+    </bean>
+
+    <bean id="marksController" class="by.nc.school.dev.example.spring.data.web.controller.MarksController">
+        <property name="marksService" ref="marksService"/>
+        <property name="courseService" ref="courseService"/>
+        <property name="personService" ref="personService"/>
+    </bean>
+
+</beans>
