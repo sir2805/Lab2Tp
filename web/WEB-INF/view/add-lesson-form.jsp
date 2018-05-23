@@ -1,7 +1,7 @@
 <%@ page import="by.nc.school.dev.example.spring.data.web.Pages" %>
 <%@ page import="by.nc.school.dev.example.spring.data.service.AppStringsService" %>
 <%@ taglib prefix="app" uri ="/WEB-INF/custom.tld" %>
-<div class="container">
+<div>
     <form action="<%=Pages.JOURNAL.ADD_LESSON.PATH_ABSOLUTE%>" method="post" class="form-group">
         <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.ADD_LESSON.KEY%>"/></h4>
         <div class="row">

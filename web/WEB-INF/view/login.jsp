@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="by.nc.school.dev.example.spring.data.service.AppStringsService" %>
 <%@ page import="by.nc.school.dev.example.spring.data.web.Pages" %>
+<%@ page import="by.nc.school.dev.example.spring.data.web.controller.SessionAttributes" %>
 <%@ taglib prefix="app" uri ="/WEB-INF/custom.tld" %>
 <html>
 <head>
@@ -14,6 +15,15 @@
 </head>
 <body>
 <div class="container">
+    <%
+        if ((session.getAttribute(SessionAttributes.IS_LOGGED_IN)) != null && !((Boolean) session.getAttribute(SessionAttributes.IS_LOGGED_IN))) {
+    %>
+    <script>
+        alert('Login failed');
+    </script>
+    <%
+        }
+    %>
     <form action="<%=Pages.USER.LOGIN.PATH_ABSOLUTE%>" method="post" class="form-signin">
         <h2 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.LOGIN.TITLE.KEY%>"/></h2>
         <label for="username" class="sr-only"><app:app-string key="<%=AppStringsService.WEB.LOGIN.USER.KEY%>"/></label>

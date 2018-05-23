@@ -31,6 +31,9 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-input#countries {
-    border-radius: unset;
+.put-marks {
+    margin: 10px;
+}
+.select-course {
+    margin-top: 10px;
 }

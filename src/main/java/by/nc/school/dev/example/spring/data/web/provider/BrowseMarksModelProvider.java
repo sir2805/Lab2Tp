@@ -43,7 +43,7 @@ public class BrowseMarksModelProvider implements ModelProvider {
     }
 
     protected void fillModel(Model model, Set<Course> courses, List<List<String>> marksTable, List<List<String>> lessonsTable) {
-        model.addAttribute("courses", courses);
+        model.addAttribute("courses", courses.toArray());
         model.addAttribute("lessonsAndMarks", marksTable);
         model.addAttribute("lessonsForCourse", lessonsTable);
     }

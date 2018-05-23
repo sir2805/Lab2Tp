@@ -18,12 +18,12 @@
 </head>
 <body>
     <jsp:include page="navbar.jsp"/>
-    <div class="page">
-        <h2><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TITLE.KEY%>"/></h2>
-        <div class="row">
+    <div class="put-marks">
+        <h2>Course marks</h2>
+        <div class="row select-course">
             <div class="col-md-2">
                 <form action="<%=Pages.JOURNAL.SELECT_SUBJECT.PATH_ABSOLUTE%>" method="post" class="form-group">
-                    <h4 class="form-signin-heading"><app:app-string key="<%=AppStringsService.WEB.JOURNAL.SELECT_SUBJECT.KEY%>"/></h4>
+                    <h4 class="form-signin-heading">Select Course</h4>
                             <div class="list-group">
                                 <c:forEach var="subject" varStatus="loop" items="${subjects}">
                                     <button type="submit" class="list-group-item list-group-item-action" name = "subjectbutton" value=${subject.id}>
@@ -38,10 +38,12 @@
                 <%
                     if (session.getAttribute(SessionAttributes.CURRENT_SUBJECT) != null) {
                 %>
-                <jsp:include page="add-lesson-form.jsp"/>
-                <c:if test="${not empty lessons}">
-                    <jsp:include page="put-mark-form.jsp"/>
-                </c:if>
+                <div class="marks">
+                    <jsp:include page="add-lesson-form.jsp"/>
+                    <c:if test="${not empty lessons}">
+                        <jsp:include page="put-mark-form.jsp"/>
+                    </c:if>
+                </div>
                 <h3><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TABLE.TITLE.KEY%>"/> <%=session.getAttribute(SessionAttributes.CURRENT_SUBJECT)%></h3>
                 <div class="container">
                     <table class="table">

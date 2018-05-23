@@ -1,5 +1,4 @@
 <%@ page import="by.nc.school.dev.example.spring.data.service.AppStringsService" %>
-<%@ page import="by.nc.school.dev.example.spring.data.web.controller.SessionAttributes" %>
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="app" uri ="/WEB-INF/custom.tld" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -17,14 +16,16 @@
 <body>
     <jsp:include page="navbar.jsp"/>
     <div class="page">
-        <h2><app:app-string key="<%=AppStringsService.WEB.JOURNAL.TITLE.KEY%>"/></h2>
         <div class="row">
             <div class="container">
+                <h2>Your Report Card</h2>
                 <c:forEach var="lessonAndMarks" varStatus="loop" items="${lessonsAndMarks}">
+                    <c:if test="${not empty lessonsForCourse[loop.index]}">
+                        <h4>Marks for Course ${courses[loop.index].name}</h4>
+                    </c:if>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col"> </th>
                                 <c:forEach var="lesson" varStatus="loop" items="${lessonsForCourse[loop.index]}">
                                     <th scope="col">${lesson}</th>
                                 </c:forEach>
@@ -32,7 +33,6 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>${courses[loop.index].name}</td>
                                 <c:forEach var="mark" varStatus="loop" items="${lessonAndMarks}">
                                     <td>${mark}</td>
                                 </c:forEach>
